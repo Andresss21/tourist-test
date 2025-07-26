@@ -5,11 +5,13 @@ import {
     Patch,
     Delete,
     Body,
-    Param
+    Param,
+    Query
 } from '@nestjs/common';
 import { DestinationService } from './destination.service';
 import { CreateDestinationDto } from './dto/create-destination.dto';
 import { UpdateDestinationDto } from './dto/update-destination.dto';
+import { SearchDestinationDto } from './dto/search-destination.dto';
 
 @Controller('destination')
 export class DestinationController {
@@ -23,9 +25,11 @@ export class DestinationController {
 
     // Endpoint para obtener todos los destinos
     @Get('findAll')
-    findAll() {
-        return this.destinationService.findAll();
+    findAll(@Query() query: SearchDestinationDto) {
+    const { cursor, records = 10 } = query;
+    return this.destinationService.findAll(cursor, records);
     }
+
 
     // Endpoint para obtener un destino por ID
     @Get('findOne/:id')
