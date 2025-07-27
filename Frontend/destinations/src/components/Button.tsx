@@ -11,7 +11,7 @@ interface RedButtonProps {
 
 export default function RedButton({ label, href, onClick, color = 'primary' }: RedButtonProps) {
   const colorClassMap: Record<string, string> = {
-    blue: 'bg-blue-500 hover:bg-blue-600',
+    blue: 'bg-secundaryBlue hover:bg-secundaryBlueHover',
     primary: 'bg-primaryRed hover:bg-primaryRedHover',
   };
 

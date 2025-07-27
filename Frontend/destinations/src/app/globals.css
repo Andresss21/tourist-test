@@ -4,6 +4,9 @@
   --color-primaryRed: #e73d1e;
   --color-primaryRedHover: #d6381c;
 
+  --color-secundaryBlue: #6C9FD5;
+  --color-secundaryBlueHover: #5D8BBD;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
