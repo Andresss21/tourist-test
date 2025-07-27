@@ -34,6 +34,11 @@ export class DestinationService {
                     skip: 1,
                     cursor: { id: cursor },
                 }),
+                include: {
+                    _count: {
+                        select: { likes: true },
+                    },
+                },
                 orderBy: {
                     createdAt: 'desc',
                 },
