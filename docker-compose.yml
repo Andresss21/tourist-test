@@ -3,15 +3,44 @@ version: '3.8'
 services:
   db:
     image: postgres:15
-    container_name: tourist_postgres
-    ports:
-      - "5432:5432"
+    container_name: postgres
+    restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: OVEInsiMptIm
       POSTGRES_DB: tourist_app
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
+  backend:
+    build: ./backend
+    container_name: backend
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:OVEInsiMptIm@db:5432/tourist_app
+    volumes:
+      - ./backend:/app
+      - /app/node_modules         
+    working_dir: /app
+    ports:
+      - '3000:3000'
+    command: sh -c "npx prisma migrate deploy && npm run start:prod"
+
+  frontend:
+    build: ./frontend/destinations
+    container_name: frontend
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend/destinations:/app
+    working_dir: /app
+    command: npm run dev
+    ports:
+      - '3001:3001'
+
 
 volumes:
-  db_data:
+  db-data:
