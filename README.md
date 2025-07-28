@@ -3,14 +3,18 @@ Prueba técnica full-stack de Lumina. El objetivo de este repositorio es demostr
 
 ## Levantar el entorno con Docker
 
-1. Clonae el repositorio:
+1. Clonar el repositorio:
 
 ```bash
 git clone https://github.com/Andresss21/tourist-test.git
 cd tourist-test
 
+```
 2. Levantar el proyecto con Docker:
+
+```bash
 docker-compose up --build
+```
 
 rutas:
 Frontend: http://localhost:3001
