@@ -1,11 +1,10 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   async rewrites() {
     return [
       {
         source: '/api/destination/:path*',
-        destination: 'http://localhost:3000/destination/:path*',
+        destination: 'http://backend:3000/destination/:path*',
       },
     ];
   },
@@ -13,7 +12,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**', 
+        hostname: '**',
       },
     ],
   },
